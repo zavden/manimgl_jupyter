@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manimgl-jupyter"
+version = "0.1.0"
+description = "ManimGL inside Jupyter notebooks (VSCode, JupyterLab): a %%manim cell magic in the style of ManimCE"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Alexander Vazquez" }]
+keywords = ["manim", "manimgl", "jupyter", "vscode", "notebook", "animation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Jupyter",
+    "Framework :: IPython",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+# manimgl is deliberately not listed: the module needs a recent manimgl from
+# GitHub (the manim_config based configuration), and pip would otherwise pull
+# the old PyPI release over it. Install manimgl first, see README.
+dependencies = [
+    "ipython>=8.18",
+    "ipykernel",
+    "ipywidgets",
+    "addict",
+]
+
+[project.optional-dependencies]
+test = ["pytest", "jupyter_client"]
+
+[tool.setuptools]
+py-modules = ["manimgl_jupyter"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
